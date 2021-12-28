@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body onload="render('saved')">
+    <nav class="nav">
+      <div class="nav_item_container">
+        <a href="#" class="nav_item hover" onclick="render('saved')">
+          <img src="img/icons8-notepad-50.png" class="icon nav_icon" />Notepad
+        </a>
+        <a href="#" class="nav_item hover" onclick="render('deleted')">
+          <img
+            src="img/icons8-full-trash-50.png"
+            class="icon nav_icon"
+          />Deleted Notes
+        </a>
+      </div>
+    </nav>
+
+    <section class="section_container" id="section_container">
+      <div class="show_note_bg invisible" id="show_note_bg">
+        <div class="show_note" id="show_note"></div>
+      </div>
+      <h1 id="headline"></h1>
+      <div class="add_note flex" id="add_note">
+        <img
+          src="img/icons8-delete-48.png"
+          alt="close"
+          class="icon close d-none hover"
+          id="close"
+          onclick="closeEditor()"
+        />
+        <div
+          class="add_note_symbol flex hover"
+          id="add_note_symbol"
+          onclick="addNote()"
+        >
+          <img src="img/icons8-notepad-128.png" class="icon add_note_icon" />Add
+          note...
+        </div>
+        <input
+          type="text"
+          class="input d-none hover"
+          id="title"
+          placeholder="Title"
+        />
+        <textarea
+          name="text"
+          class="input d-none hover"
+          id="content"
+          placeholder="Your note"
+        ></textarea>
+        <div class="actions d-none" id="actions">
+          <button id="save_button" onclick="saveNote()">Save</button>
+        </div>
+      </div>
+
+      <div class="notes" id="notes">
+        <div class="delete_all" id="delete_all">
+          <img
+            src="img/icons8-full-trash-50.png"
+            class="icon nav_icon delete_all_icon invert"
+          /><span id="delete_all_text"></span>
+        </div>
+        <div class="notes_headline" id="notes_headline">
+          <h3>You didn't add any notes yet</h3>
+        </div>
+        <div class="notes_container" id="notes_container"></div>
+      </div>
+    </section>
+  </body>
+</html>
