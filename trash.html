@@ -11,52 +11,30 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="./js/includeHTML.js"></script>
-    <script src="./models/note.class.js"></script>
-    <script src="./js/add_note.js"></script>
     <script src="./js/render_notes.js"></script>
     <script src="./js/delete_notes.js"></script>
     <script src="./js/script.js"></script>
   </head>
 
-  <body onload="init(), renderSavedNotes()">
+  <body onload="init(), renderDeletedNotes()">
     <nav class="nav" w3-include-html="./templates/nav.html"></nav>
 
     <section class="section_container" id="section_container">
       <div class="show_note_bg invisible" id="show_note_bg">
         <div class="show_note" id="show_note"></div>
       </div>
-      <h1 id="headline">Your Notepad</h1>
+      <h1 id="headline">Deleted Notes</h1>
 
-      <!-- ------------  ADD NOTE  ------------- -->
 
-      <div class="add_note flex" id="add_note">
-        <img
-          src="img/icons8-delete-48.png"
-          alt="close"
-          class="icon close d-none hover"
-          id="close"
-          onclick="closeEditor()"
-        />
-        <div class="add_note_symbol flex hover" id="add_note_symbol" onclick="addNote()">
-          <img src="img/icons8-notepad-128.png" class="icon add_note_icon" />Add note...
-        </div>
-        <input type="text" class="input d-none hover" id="title" placeholder="Title" />
-        <textarea name="text" class="input d-none hover" id="content" placeholder="Your note"></textarea>
-        <div class="actions d-none" id="actions">
-          <button id="save_button" onclick="saveNote()">Save</button>
-        </div>
-      </div>
-
-      <!-- ------------  SAVED NOTES  ------------- -->
+      <!-- ------------  DELETED NOTES  ------------- -->
 
       <div class="notes" id="notes">
-        <div class="delete_all" id="delete_all" onclick="deleteAllNotesDef()">
+        <div class="delete_all" id="delete_all" onclick="deleteAllNotes()">
           <img src="img/icons8-full-trash-50.png" class="icon nav_icon delete_all_icon invert" />
           <span id="delete_all_text">Delete all notes</span>
         </div>
         <div class="notes_headline" id="notes_headline">
-          <h2 id="section-headline">Saved Notes</h2>
-          <h3 id="section-headline__alt">You didn't add any notes yet</h3>
+          <h3>You didn't delete any notes yet</h3>
         </div>
         <div class="notes_container" id="notes_container"></div>
       </div>
