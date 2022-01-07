@@ -1,6 +1,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  color: #333;
 }
 
 body {
@@ -26,7 +27,7 @@ h2 {
 
 a {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: #333;
 }
 
 .icon {
@@ -50,9 +51,16 @@ button:hover {
   background-color: var(--background-color);
 }
 
+button:disabled{
+  cursor: default;
+  color: #999;
+}
+
+button:disabled:hover{
+  background-color: white;
+}
 .d-none {
-  display: none;
-  opacity: 0;
+  display: none !important;
 }
 
 .flex {
@@ -66,6 +74,8 @@ button:hover {
 .invert {
   filter: invert(50%);
 }
+
+/* ----------  NAVIGATION  ------------ */
 
 .nav {
   display: flex;
@@ -104,6 +114,8 @@ button:hover {
   object-fit: contain;
   margin-right: 10px;
 }
+
+/* ------------  CONTENT SECTIONS  ------------- */
 
 section {
   min-height: 100vh;
@@ -202,14 +214,15 @@ section {
 }
 
 .actions {
-  /* display: flex; */
+  display: flex;
+  gap: 10px;
   justify-content: flex-end;
   align-items: center;
   padding: 10px;
   background-color: white;
 }
 
-/* ------------  SAVED NOTES AREA  ------------- */
+/* ------------  RENDERED NOTES AREA  ------------- */
 
 .notes {
   display: flex;
@@ -222,10 +235,16 @@ section {
 }
 
 .notes_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+/*   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5%;
+  row-gap: 30px;
+  justify-items: center;
+  padding: 5%;
   width: 100%;
   height: 100%;
   color: var(--hover-textcolor);
@@ -236,18 +255,36 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  gap: 10px;
   align-items: center;
-  min-width: 0px;
-  width: 150px;
-  height: 175px;
+  min-width: 200px;
+  width: 100%;
+  max-height: 200px;
   border: 0.5px solid rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 2px 5px var(--shadow-color);
   background-color: white;
-  padding: 5px;
+  padding: 10px;
+  padding-top: 20px;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  margin: 30px;
+  /* margin: 30px; */
+}
+
+.word-wrap {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  /* overflow-wrap: break-word; */
+  hyphens: auto;
+  max-width: 100%;
+}
+
+hr {
+  width: 100%;
+}
+
+.note-title{
+  font-weight: 500;
 }
 
 .delete_note {
@@ -298,16 +335,6 @@ section {
   box-shadow: 0 2px 5px var(--shadow-color);
 }
 
-.word-wrap {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  max-width: 140px;
-}
-
-hr {
-  width: 100%;
-}
 
 .delete_all {
   display: flex;
@@ -363,16 +390,13 @@ hr {
 }
 
 .invisible {
-  width: 0 !important;
-  height: 0 !important;
-  top: 50%;
-  left: 50%;
   opacity: 0;
 }
 
 .show_note {
-  width: 0;
-  height: 0;
+  /* width: 0;
+  height: 0; */
+  position: absolute;
   display: flex;
   flex-direction: column;
   border: 0.5px solid rgb(230, 230, 230);
@@ -383,9 +407,11 @@ hr {
 }
 
 .show_note_open {
-  width: 60%;
-  height: 300px;
-  transition: all 0.1s ease-in-out;
+  left: 50% !important;
+  top: 50% !important;
+  width: 60% !important;
+  height: 300px !important;
+  transform: translate(-50%, -50%);
 }
 
 .show_note_title {
@@ -450,8 +476,13 @@ hr {
     width: 150px;
   }
 
-  .note {
-    width: 120px;
-    height: 145px;
+  .notes_container{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 450px){
+  .notes_container{
+    grid-template-columns: 1fr;
   }
 }

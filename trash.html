@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="./js/includeHTML.js"></script>
+    <script src="./models/note.class.js"></script>
+    <script src="./js/show_note.js"></script>
     <script src="./js/render_notes.js"></script>
     <script src="./js/delete_notes.js"></script>
     <script src="./js/script.js"></script>
@@ -20,11 +22,32 @@
     <nav class="nav" w3-include-html="./templates/nav.html"></nav>
 
     <section class="section_container" id="section_container">
-      <div class="show_note_bg invisible" id="show_note_bg">
-        <div class="show_note" id="show_note"></div>
+      <div class="show_note_bg invisible d-none" id="show_note_bg">
+        <div class="show_note" id="show_note">
+          <div class="show_note_title" id="open_note__title"></div>
+          <div class="show_note_content" id="open_note__content"></div>
+          <div class="show_note_actions">
+            <div class="show_note_actions_buttons" id="show_note_actions_buttons">
+              <img
+                id="show_note__delete"
+                src="img/icons8-full-trash-50.png"
+                alt="delete note"
+                class="icon note_icon hover"
+              />
+              <span class="hover_text" id="hover_text">Delete definitely</span>
+              <img
+                id="show_note__restore"
+                src="img/icons8-upload-96.png"
+                alt="edit note"
+                class="icon note_icon hover"
+              />
+              <span class="hover_text icon2" id="hover_text2">Restore</span>
+            </div>
+            <button onclick="closeNote()">Close</button>
+          </div>
+        </div>
       </div>
       <h1 id="headline">Deleted Notes</h1>
-
 
       <!-- ------------  DELETED NOTES  ------------- -->
 

@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="style.css" />
     <script src="./js/includeHTML.js"></script>
     <script src="./models/note.class.js"></script>
-    <script src="./js/add_note.js"></script>
+    <script src="./js/add_edit_note.js"></script>
+    <script src="./js/show_note.js"></script>
     <script src="./js/render_notes.js"></script>
     <script src="./js/delete_notes.js"></script>
     <script src="./js/script.js"></script>
@@ -22,28 +23,52 @@
     <nav class="nav" w3-include-html="./templates/nav.html"></nav>
 
     <section class="section_container" id="section_container">
-      <div class="show_note_bg invisible" id="show_note_bg">
-        <div class="show_note" id="show_note"></div>
+      <div class="show_note_bg invisible d-none" id="show_note_bg">
+        <div class="show_note" id="show_note">
+          <div class="show_note_title" id="open_note__title"></div>
+          <div class="show_note_content" id="open_note__content"></div>
+          <div class="show_note_actions">
+            <div class="show_note_actions_buttons" id="show_note_actions_buttons">
+              <img
+                id="show_note__delete"
+                src="img/icons8-full-trash-50.png"
+                alt="delete note"
+                class="icon note_icon hover"
+              />
+              <span class="hover_text" id="hover_text">Delete</span>
+              <img id="show_note__edit" src="img/icons8-pencil-64.png" alt="edit note" class="icon note_icon hover" />
+              <span class="hover_text icon2" id="hover_text2">Edit</span>
+            </div>
+            <button onclick="closeNote()">Close</button>
+          </div>
+        </div>
       </div>
       <h1 id="headline">Your Notepad</h1>
 
       <!-- ------------  ADD NOTE  ------------- -->
 
-      <div class="add_note flex" id="add_note">
-        <img
+      <div class="add_note flex hover" id="add_note">
+        <!-- <img
           src="img/icons8-delete-48.png"
           alt="close"
           class="icon close d-none hover"
           id="close"
           onclick="closeEditor()"
-        />
-        <div class="add_note_symbol flex hover" id="add_note_symbol" onclick="addNote()">
+        /> -->
+        <div class="add_note_symbol flex" id="add_note_symbol" onclick="addNote()">
           <img src="img/icons8-notepad-128.png" class="icon add_note_icon" />Add note...
         </div>
-        <input type="text" class="input d-none hover" id="title" placeholder="Title" oninput="enableButton()"/>
-        <textarea name="text" class="input d-none hover" id="content" placeholder="Your note" oninput="enableButton()"></textarea>
+        <input type="text" class="input d-none hover" id="title" placeholder="Title" oninput="enableButton()" />
+        <textarea
+          name="text"
+          class="input d-none hover"
+          id="content"
+          placeholder="Your note"
+          oninput="enableButton()"
+        ></textarea>
         <div class="actions d-none" id="actions">
-          <button id="save_button" disabled="" onclick="saveNote()">Save</button>
+          <button id="cancel_button" onclick="closeEditor()">Cancel</button>
+          <button id="save_button" onclick="saveNote()">Save</button>
         </div>
       </div>
 

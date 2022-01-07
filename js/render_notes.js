@@ -44,21 +44,29 @@ function renderNotes(status) {
   let notesContainer = document.getElementById('notes_container');
   notesContainer.innerHTML = '';
   let currentNotes = notes.filter((n) => n.status == status);
-  currentNotes.forEach((note) => (notesContainer.innerHTML += getHTML(note)));
+  currentNotes.forEach((note) => {
+    notesContainer.insertAdjacentHTML('afterbegin', getHTML(note));
+    insertUserInput(note);
+  });
 }
 
 function getHTML(note) {
   let deleteOptions = setDeleteOptions(note);
 
   return `
-  <div class="note hover" id="note${note.id}" onclick="showNote(${note.id})">
-    <p class ="word-wrap">${note.title}</p>
-    <p class ="word-wrap">${note.content}</p>
+  <div class="note hover" id="note${note.id}" onclick="showNote(${note.id}, event)">
+    <p id="title${note.id}" class ="note-title word-wrap">${note.title}</p>
+    <p id="content${note.id}" class ="note-content word-wrap">${note.content}</p>
     <div class="delete_note hover" onclick="${deleteOptions[0]}(${note.id})">
       <img src="img/icons8-full-trash-50.png" alt="delete note" class="icon note_icon invert hover"/>
       <span class="hover_text hover_translate">${deleteOptions[1]}</span>
     </div>
   </div>`;
+}
+
+function insertUserInput(note){
+  document.getElementById(`title${note.id}`).innerText = note.title;
+  document.getElementById(`content${note.id}`).innerText = note.content;
 }
 
 function setDeleteOptions(note) {

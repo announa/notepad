@@ -14,14 +14,17 @@ function addNote(id) {
 }
 
 function openEditor() {
-  toggleClass(['add_note_symbol', 'content', 'title', 'actions', 'close'], 'd-none');
+  toggleClass(['add_note_symbol', 'content', 'title', 'actions'], 'd-none');
   toggleClass(['add_note_symbol', 'actions'], 'flex');
+  toggleClass(['add_note'], 'hover');
   document.getElementById('add_note').classList.add('add_note_open');
+  document.getElementById('save_button').disabled = 'true';
 }
 
 function closeEditor() {
   ['title', 'content'].forEach((e) => (document.getElementById(e).value = ''));
-  toggleClass(['content', 'title', 'actions', 'close'], 'd-none');
+  toggleClass(['content', 'title', 'actions'], 'd-none');
+  toggleClass(['add_note'], 'hover');
   document.getElementById('add_note').classList.remove('add_note_open');
   document.getElementById('actions').classList.remove('flex');
 
@@ -31,8 +34,13 @@ function closeEditor() {
   }, 300);
 }
 
-function toggleClass(elementArray, ClassName) {
-  elementArray.forEach((e) => document.getElementById(e).classList.toggle(ClassName));
+function enableButton(){
+  let input = document.getElementById('title').value + document.getElementById('content').value;
+  if(input != ''){
+    document.getElementById('save_button').disabled = false;
+  } else{
+    document.getElementById('save_button').disabled = true;
+  }
 }
 
 /* ------------  SAVE NOTE  ------------ */
@@ -45,8 +53,10 @@ function saveNote(currentNote) {
 }
 
 function setNote(currentNote) {
-  let title = filter(document.getElementById('title').value);
-  let content = filter(document.getElementById('content').value);
+  let title = document.getElementById('title').value;
+  let content = document.getElementById('content').value;
+  /* let title = filter(document.getElementById('title').value);
+  let content = filter(document.getElementById('content').value); */
 
   if (currentNote) {
     currentNote.title = title;
@@ -58,17 +68,27 @@ function setNote(currentNote) {
   }
 }
 
-function filter(text) {
+/* function filter(text) {
   text = text.replace(/</g, '&lt;');
   text = text.replace(/>/g, '&gt;');
   return text;
-}
+} */
 
-function getNoteId(){
-  if(notes.length > 0){
-  let allIds = notes.map(n => n.id);
-  return (Math.max(...allIds) + 1);
-  } else{
+function getNoteId() {
+  if (notes.length > 0) {
+    let allIds = notes.map((n) => n.id);
+    return Math.max(...allIds) + 1;
+  } else {
     return 1;
   }
+}
+
+/* ------------  EDIT  ---------------- */
+
+function edit(id) {
+  closeNote();
+  setTimeout(function () {
+    addNote(id);
+  }, 50);
+  //for editing note in the add note container and loading the notes content
 }

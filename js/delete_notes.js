@@ -2,7 +2,6 @@
 
 //moves notes from titles-array to titlesDeleted-array
 function deleteNote(id) {
-  console.log(event);
   event.stopPropagation();
   moveToDeleted(id);
   saveToLocalStorage();
@@ -40,14 +39,11 @@ function deleteNoteDefinitely(id) {
 }
 
 function deleteAllNotesDef() {
-  console.log('delete')
-for(let i = notes.length -1; i >= 0; i--){
-  if(notes[i].status == 'deleted'){
-    notes.splice(i, 1);
+  for (let i = notes.length - 1; i >= 0; i--) {
+    if (notes[i].status == 'deleted') {
+      notes.splice(i, 1);
+    }
   }
-}
-  console.log(notes)
-
   saveToLocalStorage();
   renderDeletedNotes();
 }
@@ -56,7 +52,7 @@ for(let i = notes.length -1; i >= 0; i--){
 
 function restore(id) {
   let currentNote = getCurrentNote(id);
-  currentNote.status = 'saved'
+  currentNote.status = 'saved';
   saveToLocalStorage();
 
   loadFromLocalStorage();
