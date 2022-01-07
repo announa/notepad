@@ -60,11 +60,10 @@ function renderDeleteButton(currentNote) {
     closeNote('delete');
   };
   setTimeout(() => {
-    document.getElementById('show_note__delete').addEventListener('click', clickFunction, { once: true });
-    /*  function () {
-      currentNote.status == 'saved' ? deleteNote(currentNote.id) : deleteNoteDefinitely(currentNote.id);
-      closeNote();
-    }) */
+    document.getElementById('show_note__delete').onclick = function () {
+      addDeleteFunction(currentNote);
+      closeNote('delete');
+    };
   }, 5);
 }
 
@@ -90,7 +89,7 @@ function renderEditOrRestoreButton(currentNote) {
 function closeNote(action) {
   document.getElementById('open_note__title').innerHTML = '';
   document.getElementById('open_note__content').innerHTML = '';
-  /*   document.getElementById('show_note__delete').removeEventListener('click', clickFunction); */
+  document.getElementById('show_note__delete').onclick = '';
   playCloseAnimation(action);
   hideNoteBg();
 }
