@@ -11,16 +11,26 @@ function renderDeletedNotes() {
 }
 
 function setHeadline(status) {
-  let deleteAllBtn = document.getElementById('delete_all');
-  let sectionHeadline = document.getElementById('section-headline');
-  let sectionHeadlineAlt = document.getElementById('section-headline__alt');
-
-  if (!hasNotes(status)) {
-    [deleteAllBtn, sectionHeadline].forEach((e) => e.classList.add('d-none'));
-    sectionHeadlineAlt.classList.remove('d-none');
+  if (hasNotes(status)) {
+    renderStandardHeadline(status);
   } else {
-    [deleteAllBtn, sectionHeadline].forEach((e) => e.classList.remove('d-none'));
-    sectionHeadlineAlt.classList.add('d-none');
+    renderDefaultHeadline(status);
+  }
+}
+
+function renderDefaultHeadline(status) {
+  document.getElementById('delete_all').classList.add('d-none');
+  document.getElementById('section-headline__alt').classList.remove('d-none');
+  if (status == 'saved') {
+    document.getElementById('section-headline').classList.add('d-none');
+  }
+}
+
+function renderStandardHeadline(status) {
+  document.getElementById('delete_all').classList.remove('d-none');
+  document.getElementById('section-headline__alt').classList.add('d-none');
+  if (status == 'saved') {
+    document.getElementById('section-headline').classList.remove('d-none');
   }
 }
 
@@ -44,15 +54,15 @@ function getHTML(note) {
   <div class="note hover" id="note${note.id}" onclick="showNote(${note.id})">
     <p class ="word-wrap">${note.title}</p>
     <p class ="word-wrap">${note.content}</p>
-    <div class="delete_note hover">
-      <img src="img/icons8-full-trash-50.png" onclick="${deleteOptions[0]}(${note.id})" alt="delete note" class="icon note_icon invert hover"/>
+    <div class="delete_note hover" onclick="${deleteOptions[0]}(${note.id})">
+      <img src="img/icons8-full-trash-50.png" alt="delete note" class="icon note_icon invert hover"/>
       <span class="hover_text hover_translate">${deleteOptions[1]}</span>
     </div>
   </div>`;
 }
 
-function setDeleteOptions(note){
-  let callFunction = note.status == 'saved' ? 'deleteNote' : 'Delete definitely';
+function setDeleteOptions(note) {
+  let callFunction = note.status == 'saved' ? 'deleteNote' : 'deleteNoteDefinitely';
   let hoverText = note.status == 'saved' ? 'Delete' : 'Delete definitely';
-  return [callFunction, hoverText]
+  return [callFunction, hoverText];
 }

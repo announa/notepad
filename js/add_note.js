@@ -49,22 +49,26 @@ function setNote(currentNote) {
   let content = filter(document.getElementById('content').value);
 
   if (currentNote) {
-    currentNote.title = title.value;
-    currentNote.content = content.value;
+    currentNote.title = title;
+    currentNote.content = content;
   } else {
     let newNote = new Note(title, content);
-    newNote.id = notes.length + 1;
+    newNote.id = getNoteId();
     notes.push(newNote);
   }
 }
 
 function filter(text) {
-  text.replace('<', '&lt;');
-  text.replace('>', '&gt;');
+  text = text.replace(/</g, '&lt;');
+  text = text.replace(/>/g, '&gt;');
   return text;
 }
 
-function saveToLocalStorage() {
-  let notesStringified = JSON.stringify(notes);
-  localStorage.setItem('notes', notesStringified);
+function getNoteId(){
+  if(notes.length > 0){
+  let allIds = notes.map(n => n.id);
+  return (Math.max(...allIds) + 1);
+  } else{
+    return 1;
+  }
 }

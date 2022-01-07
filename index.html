@@ -40,17 +40,17 @@
         <div class="add_note_symbol flex hover" id="add_note_symbol" onclick="addNote()">
           <img src="img/icons8-notepad-128.png" class="icon add_note_icon" />Add note...
         </div>
-        <input type="text" class="input d-none hover" id="title" placeholder="Title" />
-        <textarea name="text" class="input d-none hover" id="content" placeholder="Your note"></textarea>
+        <input type="text" class="input d-none hover" id="title" placeholder="Title" oninput="enableButton()"/>
+        <textarea name="text" class="input d-none hover" id="content" placeholder="Your note" oninput="enableButton()"></textarea>
         <div class="actions d-none" id="actions">
-          <button id="save_button" onclick="saveNote()">Save</button>
+          <button id="save_button" disabled="" onclick="saveNote()">Save</button>
         </div>
       </div>
 
       <!-- ------------  SAVED NOTES  ------------- -->
 
       <div class="notes" id="notes">
-        <div class="delete_all" id="delete_all" onclick="deleteAllNotesDef()">
+        <div class="delete_all" id="delete_all" onclick="deleteAllNotes()">
           <img src="img/icons8-full-trash-50.png" class="icon nav_icon delete_all_icon invert" />
           <span id="delete_all_text">Delete all notes</span>
         </div>

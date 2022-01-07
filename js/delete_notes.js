@@ -40,7 +40,13 @@ function deleteNoteDefinitely(id) {
 }
 
 function deleteAllNotesDef() {
-  notes = [];
+  console.log('delete')
+for(let i = notes.length -1; i >= 0; i--){
+  if(notes[i].status == 'deleted'){
+    notes.splice(i, 1);
+  }
+}
+  console.log(notes)
 
   saveToLocalStorage();
   renderDeletedNotes();
