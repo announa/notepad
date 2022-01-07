@@ -76,12 +76,12 @@ function renderEditOrRestoreButton(currentNote) {
   if (currentNote.status == 'saved') {
     document.getElementById('show_note__edit').addEventListener('click', function () {
       edit(currentNote.id);
-      closeNote();
+      closeNote('edit');
     });
   } else {
     document.getElementById('show_note__restore').addEventListener('click', function () {
       restore(currentNote.id);
-      closeNote();
+      closeNote('restore');
     });
   }
 }
@@ -96,20 +96,28 @@ function closeNote(action) {
 
 function playCloseAnimation(action) {
   let showNote = document.getElementById('show_note');
-  if (action) {
-    const trashPosition = getTrashPosition();
+  if (action == 'delete') {
+    const trashPosition = getPosition('trash-link');
     Object.assign(showNote.style, trashPosition);
+  }
+  if(action == 'restore'){
+    const notesPosition = getPosition('notes-link');
+    Object.assign(showNote.style, notesPosition);
+  }
+  if(action == 'edit'){
+    const editorPosition = getPosition('add_note');
+    Object.assign(showNote.style, editorPosition);
   }
   showNote.classList.remove('show_note_open');
 }
 
-function getTrashPosition() {
-  let trashPosition = document.getElementById('trash-link').getBoundingClientRect();
+function getPosition(targetElement) {
+  let position = document.getElementById(targetElement).getBoundingClientRect();
   const styles = {
-    left: trashPosition.left + 'px',
-    top: trashPosition.top + 'px',
-    width: trashPosition.width + 'px',
-    height: trashPosition.height + 'px',
+    left: position.left + 'px',
+    top: position.top + 'px',
+    width: position.width + 'px',
+    height: position.height + 'px',
   };
   return styles;
 }
