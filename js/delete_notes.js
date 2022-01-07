@@ -26,13 +26,13 @@ function deleteAllNotes() {
 
 function deleteNoteDefinitely(id) {
   event.stopPropagation();
+  console.log(id);
 
-  let currentNote = notes.find((n, i) => {
-    n.id == id;
-    return i;
-  });
+  let currentNoteIndex = notes.findIndex((n) => n.id == id);
 
-  notes.splice(currentNote, 1);
+  console.log(currentNoteIndex);
+
+  notes.splice(currentNoteIndex, 1);
 
   saveToLocalStorage();
   renderDeletedNotes();

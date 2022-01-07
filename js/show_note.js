@@ -3,27 +3,10 @@
 // display note container
 function showNote(id, event) {
   let currentNote = getCurrentNote(id);
+  let notePosition = getNotePosition(event.target);
   showNoteBg();
-  renderNote(currentNote, event.target);
-}
-
-function showNoteBg() {
-  let showNoteBg = document.getElementById('show_note_bg');
-  showNoteBg.classList.remove('d-none');
-  setTimeout(() => {
-    showNoteBg.classList.remove('invisible');
-  }, 5);
-}
-
-//renders open Note
-function renderNote(currentNote, noteContainer) {
-  let notePosition = getNotePosition(noteContainer);
-  playOpenAnimation(notePosition);
-  renderTitleAndContent(currentNote);
-  renderDeleteButton(currentNote);
-  renderEditOrRestoreButton(currentNote);
-
-  document.getElementById('show_note').classList.add('show_note_open');
+  openNote(notePosition);
+  renderNote(currentNote);
 }
 
 function getNotePosition(noteContainer) {
@@ -39,8 +22,27 @@ function getNotePosition(noteContainer) {
   return styles;
 }
 
-function playOpenAnimation(notePosition) {
-  Object.assign(document.getElementById('show_note').style, notePosition);
+function openNote(notePosition) {
+  let showNote = document.getElementById('show_note');
+  Object.assign(showNote.style, notePosition);
+  setTimeout(() => {
+    showNote.classList.add('show_note_open');
+  }, 5);
+}
+
+function showNoteBg() {
+  let showNoteBg = document.getElementById('show_note_bg');
+  showNoteBg.classList.remove('d-none');
+  setTimeout(() => {
+    showNoteBg.classList.remove('invisible');
+  }, 5);
+}
+
+//renders open Note
+function renderNote(currentNote) {
+  renderTitleAndContent(currentNote);
+  renderDeleteButton(currentNote);
+  renderEditOrRestoreButton(currentNote);
 }
 
 // renders title and content of the open note
@@ -53,13 +55,21 @@ function renderTitleAndContent(currentNote) {
 
 // renders delete button in open note
 function renderDeleteButton(currentNote) {
+  let clickFunction = function () {
+    addDeleteFunction(currentNote);
+    closeNote('delete');
+  };
   setTimeout(() => {
-    document.getElementById('show_note__delete').addEventListener('click', function () {
+    document.getElementById('show_note__delete').addEventListener('click', clickFunction, { once: true });
+    /*  function () {
       currentNote.status == 'saved' ? deleteNote(currentNote.id) : deleteNoteDefinitely(currentNote.id);
       closeNote();
-    });
-
+    }) */
   }, 5);
+}
+
+function addDeleteFunction(currentNote) {
+  currentNote.status == 'saved' ? deleteNote(currentNote.id) : deleteNoteDefinitely(currentNote.id);
 }
 
 //renders edit or restore button
@@ -77,10 +87,32 @@ function renderEditOrRestoreButton(currentNote) {
   }
 }
 
-function closeNote() {
+function closeNote(action) {
   document.getElementById('open_note__title').innerHTML = '';
   document.getElementById('open_note__content').innerHTML = '';
+  /*   document.getElementById('show_note__delete').removeEventListener('click', clickFunction); */
+  playCloseAnimation(action);
   hideNoteBg();
+}
+
+function playCloseAnimation(action) {
+  let showNote = document.getElementById('show_note');
+  if (action) {
+    const trashPosition = getTrashPosition();
+    Object.assign(showNote.style, trashPosition);
+  }
+  showNote.classList.remove('show_note_open');
+}
+
+function getTrashPosition() {
+  let trashPosition = document.getElementById('trash-link').getBoundingClientRect();
+  const styles = {
+    left: trashPosition.left + 'px',
+    top: trashPosition.top + 'px',
+    width: trashPosition.width + 'px',
+    height: trashPosition.height + 'px',
+  };
+  return styles;
 }
 
 function hideNoteBg() {

@@ -403,7 +403,7 @@ hr {
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 2px 5px var(--shadow-color);
-  transition: all 1s ease-in-out;
+  transition: all 225ms ease-in-out;
 }
 
 .show_note_open {
