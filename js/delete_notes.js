@@ -45,7 +45,7 @@ function deleteAllNotesDef() {
     }
   }
   saveToLocalStorage();
-  renderDeletedNotes();
+  renderSavedNotes();
 }
 
 /* --------------  RESTORE  -------------- */

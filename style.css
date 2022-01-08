@@ -113,6 +113,7 @@ button:disabled:hover{
   height: 30px;
   object-fit: contain;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 /* ------------  CONTENT SECTIONS  ------------- */
@@ -159,6 +160,7 @@ section {
 }
 
 .add_note_symbol {
+  display: flex;
   align-items: center;
   padding: 20px;
   cursor: pointer;
@@ -170,6 +172,7 @@ section {
 .add_note_icon {
   width: 75px;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .add_note_open {
@@ -222,6 +225,56 @@ section {
   background-color: white;
 }
 
+.note-edited-animation{
+  animation: edit-animation 1s ease-in-out;
+}
+
+.note-edited-animation-p{
+  animation: edit-animation-p 1s ease-in-out;
+}
+.note-edited-animation-img{
+  animation: edit-animation-img 1s ease-in-out;
+}
+
+@keyframes edit-animation{
+  0%{
+    box-shadow: 0 2px 5px var(--shadow-color);
+    border: 0.5px solid rgb(230, 230, 230);
+  }
+  50%{
+    box-shadow: 0 2px 40px white;
+    border: 0.5px solid white;
+  }
+  100%{
+    box-shadow: 0 2px 5px var(--shadow-color);
+    border: 0.5px solid rgb(230, 230, 230);
+  }
+}
+
+@keyframes edit-animation-p{
+  0%{
+    color: #333;
+  }
+  50%{
+    color: #ddd;
+  }
+  100%{
+    color: #333;
+  }
+}
+
+@keyframes edit-animation-img{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
 /* ------------  RENDERED NOTES AREA  ------------- */
 
 .notes {
@@ -235,10 +288,6 @@ section {
 }
 
 .notes_container {
-/*   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 5%;
@@ -268,13 +317,11 @@ section {
   padding-top: 20px;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  /* margin: 30px; */
 }
 
 .word-wrap {
   white-space: pre-wrap;
   word-wrap: break-word;
-  /* overflow-wrap: break-word; */
   hyphens: auto;
   max-width: 100%;
 }
@@ -303,6 +350,7 @@ hr {
   height: 40px;
   padding: 10px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .hover_text {
@@ -313,9 +361,9 @@ hr {
   background-color: rgba(0, 0, 255, 0.05);
   border-radius: 20px;
   position: absolute;
-  top: 0;
+  top: 10px;
   transform: translateY(-80%);
-  left: 30px;
+  left: 35px;
   white-space: nowrap;
 }
 

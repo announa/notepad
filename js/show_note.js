@@ -47,18 +47,12 @@ function renderNote(currentNote) {
 
 // renders title and content of the open note
 function renderTitleAndContent(currentNote) {
-  console.log(currentNote.title);
-  console.log(currentNote.content);
   document.getElementById('open_note__title').innerText = currentNote.title;
   document.getElementById('open_note__content').innerText = currentNote.content;
 }
 
 // renders delete button in open note
 function renderDeleteButton(currentNote) {
-  let clickFunction = function () {
-    addDeleteFunction(currentNote);
-    closeNote('delete');
-  };
   setTimeout(() => {
     document.getElementById('show_note__delete').onclick = function () {
       addDeleteFunction(currentNote);

@@ -33,30 +33,23 @@
                 id="show_note__delete"
                 src="img/icons8-full-trash-50.png"
                 alt="delete note"
-                class="icon note_icon hover"
+                class="note_icon hover"
               />
               <span class="hover_text" id="hover_text">Delete</span>
-              <img id="show_note__edit" src="img/icons8-pencil-64.png" alt="edit note" class="icon note_icon hover" />
+              <img id="show_note__edit" src="img/icons8-pencil-64.png" alt="edit note" class="note_icon hover" />
               <span class="hover_text icon2" id="hover_text2">Edit</span>
             </div>
             <button onclick="closeNote()">Close</button>
           </div>
         </div>
       </div>
-      <h1 id="headline">Your Notepad</h1>
+      <h1 id="headline">Notepad</h1>
 
       <!-- ------------  ADD NOTE  ------------- -->
 
       <div class="add_note flex hover" id="add_note">
-        <!-- <img
-          src="img/icons8-delete-48.png"
-          alt="close"
-          class="icon close d-none hover"
-          id="close"
-          onclick="closeEditor()"
-        /> -->
-        <div class="add_note_symbol flex" id="add_note_symbol" onclick="addNote()">
-          <img src="img/icons8-notepad-128.png" class="icon add_note_icon" />Add note...
+        <div class="add_note_symbol" id="add_note_symbol" onclick="addNote()">
+          <img src="img/icons8-notepad-128.png" class="add_note_icon" />Add note...
         </div>
         <input type="text" class="input d-none hover" id="title" placeholder="Title" oninput="enableButton()" />
         <textarea
@@ -76,7 +69,7 @@
 
       <div class="notes" id="notes">
         <div class="delete_all" id="delete_all" onclick="deleteAllNotes()">
-          <img src="img/icons8-full-trash-50.png" class="icon nav_icon delete_all_icon invert" />
+          <img src="img/icons8-full-trash-50.png" class="nav_icon delete_all_icon" />
           <span id="delete_all_text">Delete all notes</span>
         </div>
         <div class="notes_headline" id="notes_headline">

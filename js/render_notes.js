@@ -55,10 +55,10 @@ function getHTML(note) {
 
   return `
   <div class="note hover" id="note${note.id}" onclick="showNote(${note.id}, event)">
-    <p id="title${note.id}" class ="note-title word-wrap">${note.title}</p>
-    <p id="content${note.id}" class ="note-content word-wrap">${note.content}</p>
+    <p id="title${note.id}" class ="note-p note-title word-wrap">${note.title}</p>
+    <p id="content${note.id}" class ="note-p note-content word-wrap">${note.content}</p>
     <div class="delete_note hover" onclick="${deleteOptions[0]}(${note.id})">
-      <img src="img/icons8-full-trash-50.png" alt="delete note" class="icon note_icon invert hover"/>
+      <img id="delete${note.id}" src="img/icons8-full-trash-50.png" alt="delete note" class="note_icon invert hover"/>
       <span class="hover_text hover_translate">${deleteOptions[1]}</span>
     </div>
   </div>`;
