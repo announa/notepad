@@ -1,0 +1,130 @@
+/* ---------------  ADD NOTE FIELD  -------------- */
+
+.add_note {
+ flex-direction: column;
+ width: 250px;
+ height: 120px;
+ border: 0.5px solid rgb(230, 230, 230);
+ border-radius: 10px;
+ background-color: white;
+ box-shadow: 0 2px 5px var(--shadow-color);
+ transition: all 225ms ease-in-out;
+ position: relative;
+ margin-bottom: 100px;
+}
+
+.add_note_symbol {
+ display: flex;
+ align-items: center;
+ padding: 20px;
+ cursor: pointer;
+ font-size: 1.2rem;
+ height: 100%;
+ border-radius: 10px;
+}
+
+.add_note_icon {
+ width: 75px;
+ margin-right: 20px;
+ cursor: pointer;
+}
+
+.add_note_open {
+ width: 60%;
+ height: 301px;
+}
+
+.close {
+ position: absolute;
+ right: 0;
+ width: 20px;
+ margin: 5px;
+ padding: 1.5px;
+ border-radius: 5px;
+}
+
+.close:hover {
+ box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.input {
+ padding: 15px;
+ border: none;
+ font-family: 'Roboto', sans-serif;
+}
+
+#title {
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+ font-size: 1rem;
+}
+#content {
+ width: 100%;
+ height: 80%;
+ vertical-align: top;
+ resize: none;
+}
+
+.input:focus {
+ outline: none;
+ background-color: var(--background-color);
+}
+
+.actions {
+ display: flex;
+ gap: 10px;
+ justify-content: flex-end;
+ align-items: center;
+ padding: 10px;
+ background-color: white;
+}
+
+.note-edited-animation{
+ animation: edit-animation 1s ease-in-out;
+}
+
+.note-edited-animation-p{
+ animation: edit-animation-p 1s ease-in-out;
+}
+.note-edited-animation-img{
+ animation: edit-animation-img 1s ease-in-out;
+}
+
+@keyframes edit-animation{
+ 0%{
+   box-shadow: 0 2px 5px var(--shadow-color);
+   border: 0.5px solid rgb(230, 230, 230);
+ }
+ 50%{
+   box-shadow: 0 2px 40px white;
+   border: 0.5px solid white;
+ }
+ 100%{
+   box-shadow: 0 2px 5px var(--shadow-color);
+   border: 0.5px solid rgb(230, 230, 230);
+ }
+}
+
+@keyframes edit-animation-p{
+ 0%{
+   color: #333;
+ }
+ 50%{
+   color: #ddd;
+ }
+ 100%{
+   color: #333;
+ }
+}
+
+@keyframes edit-animation-img{
+ 0%{
+   opacity: 1;
+ }
+ 50%{
+   opacity: 0;
+ }
+ 100%{
+   opacity: 1;
+ }
+}

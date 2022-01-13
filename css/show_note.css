@@ -1,0 +1,71 @@
+/* ----------  SHOW NOTE  ----------- */
+
+.show_note_bg {
+ position: fixed;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100vh;
+ background-color: rgba(0, 0, 0, 0.3);
+ z-index: 2;
+ opacity: 1;
+ transition: all 225ms ease-in-out;
+}
+
+.invisible {
+ opacity: 0;
+}
+
+.show_note {
+ position: absolute;
+ display: flex;
+ flex-direction: column;
+ border: 0.5px solid rgb(230, 230, 230);
+ border-radius: 10px;
+ background-color: white;
+ box-shadow: 0 2px 5px var(--shadow-color);
+ transition: all 225ms ease-in-out;
+}
+
+.show_note_open {
+ left: 50% !important;
+ top: 50% !important;
+ width: 60% !important;
+ height: 300px !important;
+ transform: translate(-50%, -50%);
+}
+
+.show_note_title {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ padding: 15px;
+ background-color: var(--background-color);
+ border-bottom: 0.5px solid rgb(230, 230, 230);
+}
+
+.show_note_content {
+ height: 100%;
+ width: 100%;
+ display: flex;
+ align-items: flex-start;
+ padding: 15px;
+}
+
+.show_note_actions {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px 20px;
+}
+
+.show_note_actions_buttons {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 80px;
+ position: relative;
+}
